@@ -71,7 +71,7 @@ class ProductSyncBot(discord.Client):
                     
                     # Create embed response
                     embed = discord.Embed(
-                        title="✅ Feedback Added",
+                        title="Feedback Added",
                         description=f"Your feedback has been queued for processing.",
                         color=discord.Color.green()
                     )
@@ -84,11 +84,11 @@ class ProductSyncBot(discord.Client):
                     await interaction.response.send_message(embed=embed, ephemeral=True)
                     logger.info(f"Queued Discord feedback from {interaction.user.name}")
                 else:
-                    await interaction.response.send_message("❌ This feedback has already been submitted.", ephemeral=True)
+                    await interaction.response.send_message("This feedback has already been submitted.", ephemeral=True)
                     
             except Exception as e:
                 logger.error(f"Failed to add feedback: {e}")
-                await interaction.response.send_message("❌ Failed to add feedback. Please try again.", ephemeral=True)
+                await interaction.response.send_message("Failed to add feedback. Please try again.", ephemeral=True)
         
         @self.tree.command(name="status", description="Check feedback status")
         @app_commands.describe(
@@ -100,7 +100,7 @@ class ProductSyncBot(discord.Client):
                 feedback = self.db.query(Feedback).filter(Feedback.id == feedback_id).first()
                 
                 if not feedback:
-                    await interaction.response.send_message("❌ Feedback not found.", ephemeral=True)
+                    await interaction.response.send_message("Feedback not found.", ephemeral=True)
                     return
                 
                 # Get labels
@@ -124,7 +124,7 @@ class ProductSyncBot(discord.Client):
                 
                 # Create embed response
                 embed = discord.Embed(
-                    title=f"📊 Feedback Status #{feedback_id}",
+                    title=f"Feedback Status #{feedback_id}",
                     color=discord.Color.blue()
                 )
                 embed.add_field(name="Source", value=feedback.source, inline=True)
@@ -146,7 +146,7 @@ class ProductSyncBot(discord.Client):
                 
             except Exception as e:
                 logger.error(f"Failed to check status: {e}")
-                await interaction.response.send_message("❌ Failed to check status. Please try again.", ephemeral=True)
+                await interaction.response.send_message("Failed to check status. Please try again.", ephemeral=True)
         
         @self.tree.command(name="top", description="Show top clusters by priority")
         @app_commands.describe(
@@ -202,7 +202,7 @@ class ProductSyncBot(discord.Client):
                 
             except Exception as e:
                 logger.error(f"Failed to show top clusters: {e}")
-                await interaction.response.send_message("❌ Failed to show top clusters. Please try again.", ephemeral=True)
+                await interaction.response.send_message("Failed to show top clusters. Please try again.", ephemeral=True)
     
     async def setup_hook(self):
         """Sync commands when bot starts."""
