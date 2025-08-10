@@ -10,7 +10,7 @@ import threading
 import time
 from dotenv import load_dotenv
 from app.api.app import create_app
-from app.discord_bot import run_discord_bot
+from app.bots.discord_bot import run_discord_bot
 
 # Load environment variables
 load_dotenv()
@@ -35,7 +35,7 @@ def run_flask_api():
     except Exception as e:
         logger.error(f"Failed to start Flask API: {e}")
 
-def run_discord_bot():
+def start_discord_bot():
     """Run the Discord bot."""
     try:
         logger.info("Starting Discord bot")
@@ -65,7 +65,7 @@ def main():
     
     # Start Discord bot in main thread
     try:
-        run_discord_bot()
+        start_discord_bot()
     except KeyboardInterrupt:
         logger.info("Shutting down ProductSync...")
     except Exception as e:
