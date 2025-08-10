@@ -6,6 +6,9 @@ from app.api.routes import feedback_bp, slack_bp, discord_bp, notion_bp
 def create_app(config_name='development'):
     """Application factory for Flask app."""
     app = Flask(__name__)
+
+    if config_name == 'testing':
+        app.config['TESTING'] = True
     
     # Configure logging
     logging.basicConfig(level=logging.INFO)
@@ -32,5 +35,5 @@ def create_app(config_name='development'):
     @app.errorhandler(500)
     def internal_error(error):
         return {'error': 'Internal server error'}, 500
-    
-    return app 
+
+    return app

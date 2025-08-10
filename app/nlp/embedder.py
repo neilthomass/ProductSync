@@ -1,8 +1,12 @@
 import numpy as np
-from sentence_transformers import SentenceTransformer
-from typing import List, Union
+from typing import List
 import logging
 import pickle
+
+try:
+    from sentence_transformers import SentenceTransformer
+except ImportError:  # pragma: no cover - handled at runtime
+    SentenceTransformer = None
 
 logger = logging.getLogger(__name__)
 
@@ -12,6 +16,10 @@ class TextEmbedder:
         Initialize the text embedder with sentence-transformers model.
         Using all-MiniLM-L6-v2 as specified in the README for Phase 0.
         """
+        if SentenceTransformer is None:
+            raise ImportError(
+                "sentence-transformers is required for TextEmbedder. Install it to use this component."
+            )
         try:
             self.model = SentenceTransformer(model_name)
             logger.info(f"Loaded embedding model: {model_name}")

@@ -5,7 +5,7 @@ from app.models.database import SessionLocal
 from app.models.feedback import Feedback, FeedbackLabel
 from app.models.cluster import Cluster
 from app.models.label import Label
-from app.nlp.classifier import FeedbackClassifier
+from app.nlp.classifier import TextClassifier
 from app.nlp.embedder import TextEmbedder
 from sklearn.cluster import HDBSCAN
 import numpy as np
@@ -17,7 +17,7 @@ class NLUWorker:
     def __init__(self):
         """Initialize the NLU worker."""
         self.db = SessionLocal()
-        self.classifier = FeedbackClassifier()
+        self.classifier = TextClassifier()
         self.embedder = TextEmbedder()
         
         # Initialize labels if they don't exist

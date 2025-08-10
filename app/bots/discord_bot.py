@@ -175,7 +175,7 @@ class ProductSyncBot(discord.Client):
                 
                 # Create embed response
                 embed = discord.Embed(
-                    title=f"🏆 Top Clusters{f' in {product_area}' if product_area else ''}",
+                    title=f"Top Clusters{f' in {product_area}' if product_area else ''}",
                     color=discord.Color.gold()
                 )
                 

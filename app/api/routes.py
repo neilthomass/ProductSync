@@ -7,7 +7,7 @@ from app.models.initiative import Initiative
 from app.models.label import Label
 from app.models.product_area import ProductArea
 from app.nlp.preprocessor import TextPreprocessor
-from app.nlp.classifier import FeedbackClassifier
+from app.nlp.classifier import TextClassifier
 from app.nlp.embedder import TextEmbedder
 import json
 import os
