@@ -1,0 +1,1 @@
+Do not use emojis anywhere in this project
